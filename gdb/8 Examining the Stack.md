@@ -11,9 +11,23 @@
 * Some compilers provide a way to compile functions so that they operate without stack frames: gcc - `-fomit-frame-pointer`.
 
 # 8.2 Backtraces
+## Syntax
 ```shell
 backtrace [option]... [qualifier]... [count]
 bt [option]... [qualifier]... [count]
 ```
 * A backtrace is a summary of how your program got where it is. 
 	* It shows one line per frame, for many frames, starting with the currently executing frame (frame zero), followed by its caller (frame one), and on up the stack.
+
+## Optional \[count\]
+* n:  Print only the innermost n frames, where n is a positive number.
+* -n: Print only the outermost n frames, where n is a positive number.
+
+## Optional \[option\]
+* -full: Print the values of the local variables also. This can be combined with the optional count to limit the number of frames shown.
+
+* -no-filters: This is only relevant when gdb has been configured with Python support.
+
+* -hide: A Python frame filter might decide to “elide” some frames. Normally such elided frames are still printed, but they are indented relative to the filtered frames that cause them to be elided. The `-hide` option causes elided frames to not be printed at all.
+
+
